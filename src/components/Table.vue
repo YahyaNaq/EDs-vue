@@ -25,29 +25,47 @@
       </tr>
     </thead>
     <tbody>
-
       <tr :key="employee.id" v-for="employee in employees"
       class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
         <TableRow :employee="employee"/>
       </tr>
     </tbody>
   </table>
+  <div class="">
+    <DataTable :value="employees" tableStyle="min-width: 50rem">
+      <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
+    </DataTable>
+  </div>
 </template>
 
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TableRow from '@/components/TableRow.vue';
+import Column from "primevue/column";
+import DataTable from "primevue/datatable";
 
 export default defineComponent({
   name: 'Table',
   components: {
-    TableRow
+    TableRow,
+    DataTable,
+    Column
   },
   props: {
     employees: Array<object>
   },
   setup() {
+    const columns = [
+    { field: 'fullname', header: 'fullname' },
+    { field: 'department', header: 'department' },
+    { field: 'category', header: 'Category' },
+    { field: 'quantity', header: 'Quantity' }
+    ];
+
+    return {
+      columns
+    };
     
   }
 });
