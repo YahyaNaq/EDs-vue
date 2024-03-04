@@ -31,14 +31,8 @@ import Table from '@/components/Table.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import AddNewEmployeeForm from '@/components/AddNewEmployeeForm.vue';
 import ActionButton from '@/components/ActionButton.vue';
+import type Employee from '@/interfaces/Employee.ts';
 
-interface Employee {
-  id?: number;
-  fullname: string;
-  position: string;
-  department: string;
-  salary: string;
-};
 
 export default defineComponent({
   name: 'App',

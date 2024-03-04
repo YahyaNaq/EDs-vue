@@ -69,20 +69,8 @@ import { defineComponent, getCurrentInstance, reactive } from 'vue';
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form } from "vee-validate";
 import ActionButton from '@/components/ActionButton.vue';
+import type Department from '@/interfaces/Department.ts';
 
-
-
-// interface EmployeeFormData {
-//   fullname: string;
-//   position: string;
-//   department: string;
-//   salary: string;
-// };
-
-interface department {
-  id: number;
-  name: string;
-};
 
 export default defineComponent({
   name: 'AddNewEmployeeForm',
@@ -93,17 +81,10 @@ export default defineComponent({
     ErrorMessage,
   },
   props: {
-    departments: Array<department>
+    departments: Array<Department>
   },
   setup() {
     const instance = getCurrentInstance();
-
-    // const formData = reactive<EmployeeFormData>({
-    //   fullname: '',
-    //   position: '',
-    //   department: '',
-    //   salary: '',
-    // });
 
     const employeeFormValidationSchema = Yup.object({
       fullname: Yup.string().required().max(35).label('Full name'),

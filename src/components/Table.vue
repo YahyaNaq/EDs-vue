@@ -1,4 +1,20 @@
 <template>
+  <div class="p-4 text-left">
+    <DataTable
+    :value="employees" 
+    tableStyle="min-width: 50rem"
+    :showGridlines="true"
+    :stripedRows="true"
+    >
+      <template #header>
+          <div class="flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+              <span class="text-xl uppercase text-900 font-semibold">Employees</span>
+          </div>
+      </template>
+      <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
+    </DataTable>
+  </div>
+
   <table class="h-10 w-full text-sm text-left text-gray-500 dark:text-gray-400">
     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
       <tr>
@@ -31,11 +47,6 @@
       </tr>
     </tbody>
   </table>
-  <div class="">
-    <DataTable :value="employees" tableStyle="min-width: 50rem">
-      <Column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></Column>
-    </DataTable>
-  </div>
 </template>
 
 
@@ -44,6 +55,7 @@ import { defineComponent } from 'vue';
 import TableRow from '@/components/TableRow.vue';
 import Column from "primevue/column";
 import DataTable from "primevue/datatable";
+import type Employee from '@/interfaces/Employee.ts';
 
 export default defineComponent({
   name: 'Table',
@@ -53,14 +65,14 @@ export default defineComponent({
     Column
   },
   props: {
-    employees: Array<object>
+    employees: Array<Employee>
   },
   setup() {
     const columns = [
-    { field: 'fullname', header: 'fullname' },
-    { field: 'department', header: 'department' },
-    { field: 'category', header: 'Category' },
-    { field: 'quantity', header: 'Quantity' }
+    { field: 'fullname', header: 'Fullname' },
+    { field: 'position', header: 'Position' },
+    { field: 'department', header: 'Department' },
+    { field: 'salary', header: 'Salary' }
     ];
 
     return {
