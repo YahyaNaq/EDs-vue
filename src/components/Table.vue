@@ -3,8 +3,8 @@
     <DataTable
     :value="employees" 
     tableStyle="min-width: 50rem"
-    :showGridlines="true"
-    :stripedRows="true"
+    showGridlines
+    stripedRows
     >
       <template #header>
           <div class="flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
